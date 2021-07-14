@@ -6,7 +6,7 @@ projectDate = {};
 
 /* Dependencies */
 /* Middleware*/
-
+app.use
 //Here we are configuring express to use body-parser as middle-ware.
 // Cors for cross origin allowance
 
