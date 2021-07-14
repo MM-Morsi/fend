@@ -17,11 +17,26 @@ const server = http.createServer( function (req, res){
 var express = require('express')
 var app = express();
 const port = 3000
-
-app.get('/', function(req,res){
+// get request method
+app.get('/', function (req, res) {
     res.send("Hello World")
 })
-
-app.listen(port, () => {
-    console.log(`Puthtis in your broweser to open the application:  localhost:${port}`);
+// post request method
+app.post('/', (req, res) => {
+    res.send("POST request to the homepage!")
 })
+// all request method
+app.all('/secret', function (req, res, next) {
+    res.send("This is an all implementation. Remove this and get request will give an error")
+    console.log('Accessing the secret section ...')
+    next() // pass control to the next handler
+})
+//request parameter
+app.get('/users/:userId/books/:bookId', function (req, res) {
+    res.send(req.params)
+})
+// listener
+app.listen(port, () => {
+    console.log(`Put htis in your broweser to open the application:  localhost:${port}`);
+})
+

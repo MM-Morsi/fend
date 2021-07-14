@@ -1,7 +1,8 @@
 // Setup empty JS object to act as endpoint for all routes
 projectDate = {};
 // Express to run server and routes
-
+var express =  require("express");
+var app = express();
 // Start up an instance of app
 
 /* Dependencies */
