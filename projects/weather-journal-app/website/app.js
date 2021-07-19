@@ -22,4 +22,18 @@ generateButton.addEventListener("click", async ()=>{ // await works inside async
     console.log("response as a javascript object:\n", tempReqJSObj);
     console.log("temperature is: ", tempReqJSObj.main.temp);
     const temperature = tempReqJSObj.main.temp;
+    // projectData = temperature;
+
+    // post request on the endpoint using fetch 
+    await fetch('/gettingData', {
+        method: "POST",
+        credentials: "same-origin", // same origin or cross origin >> on the same server
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            date: newDate,
+            temp: temperature,
+        })
+    })
 })

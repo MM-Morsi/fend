@@ -1,5 +1,5 @@
 // Setup empty JS object to act as endpoint for all routes
-projectDate = {};
+projectData = {};
 const port = 3000;
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -29,4 +29,18 @@ app.use(express.static('website')); // makes website three files accecible >> en
 // Setup Server
 app.listen(port, ()=>{
     console.log("server running on port ", port)
+})
+
+// endpoint: return the projectData 
+app.get("/temperature", (req, res) => {
+    // send javascript object projectData
+    return res.send(projectData); // how to update the projectData with temp value
+})
+
+// endpoint: get data from the client 
+app.post("/gettingData", (req, res) => {
+    // access the body of the request
+    // projectData = req.body; // this is two pointers to the same object 
+    projectData = {...req.body} // spread operator: a new object here
+    res.end(); // end this response >> res.send(projectData)    
 })
