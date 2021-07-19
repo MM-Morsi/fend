@@ -38,7 +38,7 @@ app.get("/temperature", (req, res) => {
 })
 
 // endpoint: get data from the client 
-app.post("/gettingData", (req, res) => {
+app.post("/settingData", (req, res) => {
     // access the body of the request
     // projectData = req.body; // this is two pointers to the same object 
     projectData = {...req.body} // spread operator: a new object here

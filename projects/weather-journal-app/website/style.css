@@ -73,6 +73,14 @@ button{
     font-family: 'Oswald', sans-serif;
     border: none;
     box-shadow: 2px 4px 5px #444;
+    cursor: pointer;
+    
+}
+button:hover{
+    background-color: blueviolet;
+}
+button:active{
+    background-color: cadetblue;
 }
 h1{
     font-size: 36px;

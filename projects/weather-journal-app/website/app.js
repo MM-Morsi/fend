@@ -2,7 +2,7 @@
 
 // Create a new date instance dynamically with JS
 let d = new Date();
-let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
+let newDate = d.getMonth()+1+'.'+ d.getDate()+'.'+ d.getFullYear();
 console.log("New Date:", newDate)
 
 // API Url to get the weather data using fetch
@@ -10,6 +10,7 @@ const key = '306f34f6f645e03e6d803023522e7bed';
 const generateButton = document.querySelector("#generate");
 generateButton.addEventListener("click", async ()=>{ // await works inside async functions
     let zip = document.querySelector("#zip").value;
+    let textFeeling = document.querySelector("#feelings").value;
     console.log(zip)
     if (!zip){
         console.log("zip code empty")
@@ -24,8 +25,8 @@ generateButton.addEventListener("click", async ()=>{ // await works inside async
     const temperature = tempReqJSObj.main.temp;
     // projectData = temperature;
 
-    // post request on the endpoint using fetch 
-    await fetch('/gettingData', {
+    // post request on the server endpoint using fetch 
+    await fetch('/settingData', {
         method: "POST",
         credentials: "same-origin", // same origin or cross origin >> on the same server
         headers: {
@@ -34,6 +35,18 @@ generateButton.addEventListener("click", async ()=>{ // await works inside async
         body: JSON.stringify({
             date: newDate,
             temp: temperature,
+            content: textFeeling,
         })
-    })
-})
+    });
+
+    // get request from the server
+    const featuredData = await fetch('/temperature', {
+        credentials: "same-origin"
+    });
+    const featuredDataObject = await featuredData.json();
+    console.log(featuredDataObject);
+    document.getElementById("date").innerHTML = "date: " + featuredDataObject.date;
+    document.getElementById("content").innerHTML = "content: " + featuredDataObject.content;
+    document.getElementById("temp").innerHTML = "temp: " + featuredDataObject.temp;
+    
+});
