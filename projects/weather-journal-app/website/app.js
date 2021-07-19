@@ -3,6 +3,7 @@
 // Create a new date instance dynamically with JS
 let d = new Date();
 let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
+console.log("New Date:", newDate)
 
 // API Url to get the weather data using fetch
 const key = '306f34f6f645e03e6d803023522e7bed';
